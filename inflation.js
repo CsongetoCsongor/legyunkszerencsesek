@@ -11,7 +11,7 @@ class Inflation {
 
 
             let t = chanceToCrash * 100;
-            console.log("t:" + t)
+            // console.log("t:" + t)
             let r = Math.random() * 100;
             if (r <= t) {
                 hasCrashed = true;
@@ -20,7 +20,7 @@ class Inflation {
 
             crashAtValue += 0.1;
             chanceToCrash += Math.random() * (0.000002 - 0.0000005) + 0.0000005;;
-            console.log("chanceToCrash:" + chanceToCrash)
+            // console.log("chanceToCrash:" + chanceToCrash)
         }
         console.log("crashAtValue" + crashAtValue);
         return crashAtValue;
