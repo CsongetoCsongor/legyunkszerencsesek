@@ -1,0 +1,1 @@
+ez a projekt a szenrecsxejétkleprol vofgk szolni a mi a carsh nevu jétlkban fog mevaslognuslni ami egy jétlk amiben egy ideig megy a sozrzo aztrán vege van és az a lengyeg hogy minél késob vegye ki az ember de még azelöt hogy crashelhne
