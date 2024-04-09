@@ -8,3 +8,7 @@ body {
     background-color: rgb(5, 119, 20);
     color: beige;
 }
+
+canvas#cvs {
+    background-color: blue;
+}
