@@ -97,17 +97,59 @@ function updateStats() {
 }
 
 
+let x = 0;
+const endX = cvsWidth;
+
+
+
 function drawGraph() {
     
     ctx.clearRect(0, 0, cvsWidth, cvsHeight);
+    
+  
+     
 
-    ctx.beginPath(); // Start a new path
-    ctx.moveTo(0, 600); // Move the pen to (30, 50)
-    ctx.lineTo(600, 0); // Draw a line to (150, 100)
-    ctx.stroke(); // Render the path
+    
 
+
+
+    ctx.globalAlpha = 1;
     ctx.beginPath();
-    ctx.moveTo(0, 600);
-    ctx.bezierCurveTo(20, 100, 200, 100, 200, 20);
+    ctx.moveTo(0, cvsHeight - 30);
+    ctx.bezierCurveTo(x, cvsHeight, x, 0, x, 0);
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = 'red'; 
     ctx.stroke();
+
+    // Draw fill up to current x 
+    
+    // ctx.lineTo(x, cvsHeight);
+    // ctx.lineTo(0, cvsHeight);
+    // ctx.closePath();
+    // ctx.fillStyle = 'blue';
+    // ctx.fill();
+    
+
+    // Increment x
+
+
+    x += 10;
+
+    // Stop at right edge
+    if(x >= endX) {
+        x = endX;
+        ctx.globalAlpha = 0.5;
+        const grd = ctx.createLinearGradient(0, 0, 0, cvsHeight);
+
+        grd.addColorStop(0, "red");
+        grd.addColorStop(0.5, "yellow"); 
+        grd.addColorStop(1, "green");
+        
+        ctx.lineTo(cvsWidth, cvsHeight); 
+        ctx.lineTo(0, cvsHeight);
+        ctx.closePath();
+        ctx.fillStyle = grd;
+        ctx.fill();
+        // 
+    }   
 }
