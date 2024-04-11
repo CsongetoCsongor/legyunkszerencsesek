@@ -163,6 +163,8 @@ function drawGraph() {
     }  
 
     
+
+    
     
 }
 
@@ -182,3 +184,22 @@ function manageFillerPoint(fillerpoint) {
     fillerpoint += 1;
     return fillerpoint;
 }
+
+
+const img = document.querySelector('img');
+
+function makeItRain() {
+  img.style.position = 'absolute';  
+  img.style.left = Math.random() * window.innerWidth + 'px';
+  
+  img.style.animation = 'fall 2s linear';
+
+  img.addEventListener('animationend', () => {
+    img.style.animation = '';
+    makeItRain(); 
+  });
+}
+
+
+
+let interval2 = setInterval(makeItRain, 100);

@@ -37,7 +37,7 @@ div#BadLuck{
 }
 
 div:nth-child(-n+6) {
-    background: linear-gradient(to right, red, orange, yellow, green);
+    background: linear-gradient(to right, black, purple,);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     color: white;
@@ -50,24 +50,34 @@ div:nth-child(-n+6) {
 }
 
 div:nth-child(1) {
-    background: linear-gradient(to right, red, orange);
+    background: linear-gradient(to right, black, purple);
 }
 
 div:nth-child(2) {
-    background: linear-gradient(to right, orange, yellow); 
+    background: linear-gradient(to right, purple, black); 
 }
 
 div:nth-child(3) {
-    background: linear-gradient(to right, yellow, green);
+    background: linear-gradient(to right, black, purple);
 }
 
 div:nth-child(4) {
-    background: linear-gradient(to right, green, red);
+    background: linear-gradient(to right, purple, black);
 }
 
 div:nth-child(5) {
-    background: linear-gradient(to right, red, orange);
+    background: linear-gradient(to right, black, purple);
 }
 div:nth-child(6) {
-    background: linear-gradient(to right, orange, yellow); 
+    background: linear-gradient(to right, purple, black); 
 }
+
+
+@keyframes fall {
+    from {
+      top: -50px;
+    }
+    to {
+      top: 100%;
+    }
+  }
