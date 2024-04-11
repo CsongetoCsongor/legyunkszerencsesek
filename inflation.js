@@ -22,7 +22,7 @@ class Inflation {
             chanceToCrash += Math.random() * (0.000002 - 0.0000005) + 0.0000005;;
             // console.log("chanceToCrash:" + chanceToCrash)
         }
-        console.log("crashAtValue" + crashAtValue);
+        // console.log("crashAtValue" + crashAtValue);
         return crashAtValue;
     }
 }

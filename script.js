@@ -46,7 +46,7 @@ function inflate() {
         drawGraph();
         multiplier += 0.01;
         multiplierText.innerHTML = multiplier;
-        console.log(multiplier); 
+        // console.log(multiplier); 
         outcomeText.innerHTML = "TO BE DETERMINED"
     }
     else {
@@ -54,6 +54,7 @@ function inflate() {
         multiplier = 1;
         inflation = new Inflation();
         outcomeText.innerHTML = "CRASHED"
+        betButton.innerHTML = "Fogadás";
         balance -= bet.value;
         updateStats();
     }
@@ -100,6 +101,9 @@ function updateStats() {
 let x = 0;
 const endX = cvsWidth;
 
+let lineFillerGradPoint1 = 0;
+let lineFillerGradPoint2 = 0.5;
+let lineFillerGradPoint3 = 1;
 
 
 function drawGraph() {
@@ -107,8 +111,11 @@ function drawGraph() {
     ctx.clearRect(0, 0, cvsWidth, cvsHeight);
     
   
-     
 
+    ctx.textAlign = "center";
+    ctx.font = "bold italic 100px Brush Script MT"
+    ctx.fillStyle = 'white';
+    ctx.fillText(multiplier.toFixed(2), cvsWidth/2, 100);
     
 
 
@@ -117,39 +124,61 @@ function drawGraph() {
     ctx.beginPath();
     ctx.moveTo(0, cvsHeight - 30);
     ctx.bezierCurveTo(x, cvsHeight, x, 0, x, 0);
-    ctx.lineWidth = 5;
-    ctx.strokeStyle = 'red'; 
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = 'white'; 
     ctx.stroke();
 
-    // Draw fill up to current x 
-    
-    // ctx.lineTo(x, cvsHeight);
-    // ctx.lineTo(0, cvsHeight);
-    // ctx.closePath();
-    // ctx.fillStyle = 'blue';
-    // ctx.fill();
-    
-
-    // Increment x
 
 
-    x += 10;
 
-    // Stop at right edge
+    x += 5;
+
+
     if(x >= endX) {
         x = endX;
         ctx.globalAlpha = 0.5;
         const grd = ctx.createLinearGradient(0, 0, 0, cvsHeight);
 
-        grd.addColorStop(0, "red");
-        grd.addColorStop(0.5, "yellow"); 
-        grd.addColorStop(1, "green");
+        grd.addColorStop(lineFillerGradPoint1, "rgba(149,22,121,1)");
+        grd.addColorStop(lineFillerGradPoint2, "rgba(13,11,11,1)"); 
+        grd.addColorStop(lineFillerGradPoint3, "rgba(149,22,121,1)");
         
         ctx.lineTo(cvsWidth, cvsHeight); 
         ctx.lineTo(0, cvsHeight);
         ctx.closePath();
         ctx.fillStyle = grd;
         ctx.fill();
-        // 
-    }   
+        ctx.globalAlpha = 1;
+        ctx.textAlign = "center";
+        ctx.font = "bold italic 100px Brush Script MT"
+        ctx.fillStyle = 'white';
+        ctx.fillText(multiplier.toFixed(2), cvsWidth/2, 100);
+        
+        manageFillerPoint(lineFillerGradPoint1);
+        manageFillerPoint(lineFillerGradPoint2);
+        manageFillerPoint(lineFillerGradPoint3);
+
+        console.log(lineFillerGradPoint1);
+
+    }  
+
+    
+    
+}
+
+function manageFillerPoint(fillerpoint) {
+    // if(fillerpoint <= 0) {
+    //     fillerpoint += 0.001;
+    //     return fillerpoint;
+    // }
+    // else if(fillerpoint >= 1) {
+    //     fillerpoint -= 0.001;
+    //     return fillerpoint;
+    // }
+    // else {
+    //     fillerpoint += 0.001;
+    //     return fillerpoint;
+    // }
+    fillerpoint += 1;
+    return fillerpoint;
 }
