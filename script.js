@@ -2,7 +2,17 @@ import {Inflation} from "./inflation.js";
 import {Bet} from "./bet.js"
 
 
+ const canvas = document.getElementById('cvs');
 
+ const width = window.innerWidth;
+ const height = window.innerHeight;
+ const z = width / 2 - canvas.width / 2;
+ const y = height / 2 - canvas.height / 2;
+ 
+ canvas.style.position = 'absolute';
+ canvas.style.left = `${z}px`; 
+ canvas.style.top = `${y}px`;
+ 
 const multiplierText = document.querySelector("#multiplier-text");
 const betValue = document.querySelector('#bet-value');
 const autoCashoutValue = document.querySelector('#auto-cashout-value');
