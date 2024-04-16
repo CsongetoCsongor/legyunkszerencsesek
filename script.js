@@ -148,8 +148,8 @@ function drawGraph() {
     x += 5;
 
 
-    if(x >= endX) {
-        x = endX;
+    if(x >= endX-50) {
+        x = endX-50;
         ctx.globalAlpha = 0.5;
         const grd = ctx.createLinearGradient(0, 0, 0, cvsHeight);
 
