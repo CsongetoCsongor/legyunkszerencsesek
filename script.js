@@ -78,6 +78,8 @@ betButton.addEventListener('click', startInflation);
 
 function startInflation() {
     
+    
+
     if (betValue.value != "") {
         if (isButtonCashout == false) {
             bet = new Bet(betValue.value, autoCashoutValue.value);
@@ -111,16 +113,36 @@ function updateStats() {
 let x = 0;
 const endX = cvsWidth;
 
-let lineFillerGradPoint1 = 0;
-let lineFillerGradPoint2 = 0.5;
-let lineFillerGradPoint3 = 1;
 
 
 function drawGraph() {
     
     ctx.clearRect(0, 0, cvsWidth, cvsHeight);
     
-  
+    ctx.beginPath();
+    ctx.moveTo(30, 0);
+    ctx.lineTo(30, cvsHeight);
+    ctx.lineWidth = 0.5;
+    ctx.strokeStyle = 'white'; 
+    ctx.stroke();
+
+
+    ctx.moveTo(30, 0);
+    ctx.lineTo(35, 0);
+
+    ctx.moveTo(30, cvsHeight/4);
+    ctx.lineTo(35, cvsHeight/4);
+
+    ctx.moveTo(30, cvsHeight/2);
+    ctx.lineTo(40, cvsHeight/2);
+
+    ctx.moveTo(30, cvsHeight*3/4);
+    ctx.lineTo(35, cvsHeight*3/4);
+
+    ctx.moveTo(30, cvsHeight);
+    ctx.lineTo(35, cvsHeight);
+
+    ctx.stroke();
 
     ctx.textAlign = "center";
     ctx.font = "bold italic 100px Brush Script MT"
@@ -144,32 +166,32 @@ function drawGraph() {
     x += 5;
 
 
-    if(x >= endX-50) {
-        x = endX-50;
+    if(x >= endX) {
+        x = endX;
         ctx.globalAlpha = 0.5;
-        const grd = ctx.createLinearGradient(0, 0, 0, cvsHeight);
+        let grd = ctx.createLinearGradient(0, 0, 0, cvsHeight);
 
-        grd.addColorStop(lineFillerGradPoint1, "rgba(149,22,121,1)");
-        grd.addColorStop(lineFillerGradPoint2, "rgba(13,11,11,1)"); 
-        grd.addColorStop(lineFillerGradPoint3, "rgba(149,22,121,1)");
-        
+        grd.addColorStop(0, "rgba(149,22,121,1)");
+        grd.addColorStop(0.5, "rgba(13,11,11,1)"); 
+        grd.addColorStop(1, "rgba(149,22,121,1)");
+
+      
         ctx.lineTo(cvsWidth, cvsHeight); 
         ctx.lineTo(0, cvsHeight);
         ctx.closePath();
         ctx.fillStyle = grd;
         ctx.fill();
+
+
         ctx.globalAlpha = 1;
         ctx.textAlign = "center";
         ctx.font = "bold italic 100px Brush Script MT"
         ctx.fillStyle = 'white';
         ctx.fillText(multiplier.toFixed(2), cvsWidth/2, 100);
         
-        manageFillerPoint(lineFillerGradPoint1);
-        manageFillerPoint(lineFillerGradPoint2);
-        manageFillerPoint(lineFillerGradPoint3);
 
-        console.log(lineFillerGradPoint1);
 
+      
     }  
 
     
@@ -178,22 +200,7 @@ function drawGraph() {
     
 }
 
-function manageFillerPoint(fillerpoint) {
-    // if(fillerpoint <= 0) {
-    //     fillerpoint += 0.001;
-    //     return fillerpoint;
-    // }
-    // else if(fillerpoint >= 1) {
-    //     fillerpoint -= 0.001;
-    //     return fillerpoint;
-    // }
-    // else {
-    //     fillerpoint += 0.001;
-    //     return fillerpoint;
-    // }
-    fillerpoint += 1;
-    return fillerpoint;
-}
+
 
 
 const img = document.querySelector('img');
@@ -209,3 +216,5 @@ function makeItRain() {
     makeItRain(); 
   });
 }
+
+
