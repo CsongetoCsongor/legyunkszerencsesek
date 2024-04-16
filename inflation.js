@@ -15,7 +15,6 @@ class Inflation {
             let r = Math.random() * 100;
             if (r <= t) {
                 hasCrashed = true;
-                makeItRain();
             }
             
 
