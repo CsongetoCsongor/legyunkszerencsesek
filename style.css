@@ -15,8 +15,9 @@ body {
 }
 
 canvas#cvs {
-    background-image: url('images/crash-canvas-bg.jpg');
-    /* border: 5px solid black; */
+    background-color: grey;
+    /* background-image: url('images/crash-canvas-bg.jpg'); */
+    left: 50%;
 }
 
 @keyframes gradient {
@@ -31,7 +32,7 @@ canvas#cvs {
     }
 }
 
-div#BadLuck{
+.BadLuck{
     display: none;
 }
 
