@@ -14,6 +14,10 @@ import {Bet} from "./bet.js"
  canvas.style.top = `${y}px`;
  
 const multiplierText = document.querySelector("#multiplier-text");
+/**
+ * Retrieves the value of the bet input element on the page.
+ * @returns {number} The current value of the bet input.
+ */
 const betValue = document.querySelector('#bet-value');
 const autoCashoutValue = document.querySelector('#auto-cashout-value');
 const betButton = document.querySelector('#bet-button');
