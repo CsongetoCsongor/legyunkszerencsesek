@@ -199,7 +199,3 @@ function makeItRain() {
     makeItRain(); 
   });
 }
-
-
-
-let interval2 = setInterval(makeItRain, 100);
