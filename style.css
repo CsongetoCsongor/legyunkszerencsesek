@@ -36,6 +36,31 @@ canvas#cvs {
     display: none;
 }
 
+#BadLuckStock{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    right: 10%;
+    animation: spinAndBounceStock 5s linear infinite;
+}
+
+#BadLuckCat{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    left: 10%;
+    animation: spinAndBounceCat 5s linear infinite;
+}
+
+#CurseOfRa{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    text-align: center;
+    left: 42%;
+    top: 85%;
+}
+
 div:nth-child(-n+6) {
     background: linear-gradient(to right, black, purple,);
     border-radius: 8px;
@@ -74,10 +99,64 @@ div:nth-child(6) {
 
 
 @keyframes fall {
-    from {
-      top: -50px;
-    }
-    to {
-      top: 100%;
-    }
-  }
+from {
+    top: -50px;
+}
+to {
+    top: 100%;
+}
+}
+
+@keyframes spinAndBounceCat {
+0% {
+    transform: rotate(0deg) translateY(0) translateX(0);
+}
+25% {
+    transform: rotate(360deg) translateY(-100px) translateX(100px) matrix3d(0.5, 0, -0.866025, 0, 0.595877, 1.2, -1.03209, 0, 10.866025, 0, 0.5, 0, -25.9808, 0, 15, 1); 
+}
+35% {
+    transform: rotate(450deg) translateY(0) translateX(0); 
+}
+50% {
+    transform: rotate(720deg) translateY(-200px) translateX(200px) matrix3d(10, 3, -1.866025, 0, 1.595877, 1.9, -0.1343209, 0, 7.466025, 27, 0.5, 0, -5.9808, 0, 6, 9);
+}
+65% { 
+    transform: rotate(900deg) translateY(0) translateX(0);
+}
+75% {
+    transform: rotate(1080deg) translateY(-100px) translateX(100px) matrix3d(-3.23423, 0, 12, 9, -2.3454345, 4.5, -1, 4, 3.76857, -3.54, 0.5, -0.75, -3.9808, 2.23423, 15, -4);
+}
+85% {
+    transform: rotate(1170deg) translateY(0) translateX(0); 
+}
+100% {
+    transform: rotate(1440deg) translateY(0) translateX(0) matrix3d(-0.5, 7.675, 4.654, 0, -1.595877, -1.2, 12.03209, 6.52354, 10.7856678025, -1.56789, 0.5, 12.7685, 0, -3, 1.0120, 1);
+}
+}
+
+@keyframes spinAndBounceStock {
+0% {
+    transform: rotate(0deg) translateY(0) translateX(0);
+}
+25% {
+    transform: rotate(-360deg) translateY(100px) translateX(-100px) matrix3d(0.5, 0, -0.866025, 0, 0.595877, 1.2, -1.03209, 0, 10.866025, 0, 0.5, 0, -25.9808, 0, 15, 1); 
+}
+35% {
+    transform: rotate(-450deg) translateY(0) translateX(0); 
+}
+50% {
+    transform: rotate(-720deg) translateY(200px) translateX(-200px) matrix3d(10, 3, -1.866025, 0, 1.595877, 1.9, -0.1343209, 0, 7.466025, 27, 0.5, 0, -5.9808, 0, 6, 9);
+}
+65% { 
+    transform: rotate(-900deg) translateY(0) translateX(0);
+}
+75% {
+    transform: rotate(-1080deg) translateY(100px) translateX(-100px) matrix3d(-3.23423, 0, 12, 9, -2.3454345, 4.5, -1, 4, 3.76857, -3.54, 0.5, -0.75, -3.9808, 2.23423, 15, -4);
+}
+85% {
+    transform: rotate(-1170deg) translateY(0) translateX(0); 
+}
+100% {
+    transform: rotate(-1440deg) translateY(0) translateX(0) matrix3d(-0.5, 7.675, 4.654, 0, -1.595877, -1.2, 12.03209, 6.52354, 10.7856678025, -1.56789, 0.5, 12.7685, 0, -3, 1.0120, 1);
+}
+}
