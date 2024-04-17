@@ -35,6 +35,14 @@ let isButtonCashout = false;
 const cvsWidth = 600;
 const cvsHeight = 600;
 
+
+
+const img_bad_luck = new Image();
+img_bad_luck.src = 'images/stock_crash_bad_luck.png'; 
+
+const img_luck = new Image();
+img_luck.src = 'images/img_win.jpeg'; 
+
 let balance = 200;
 updateStats();
 
@@ -51,6 +59,21 @@ function inflate() {
         multiplier = 1;
         outcomeText.innerHTML = "AUTO-CASHED OUT SUCCESSFULLY"
         balance += bet.value * bet.autoCashoutValue;
+        
+        isButtonCashout = false;
+        betButton.innerHTML = "Fogadás";
+
+        x = 0;
+
+        ctx.clearRect(0, 0, cvsWidth, cvsHeight);
+
+        ctx.drawImage(img_luck, 0, 0, cvsWidth, cvsHeight);
+
+        ctx.textAlign = "center";
+        ctx.font = "bold italic 40px Brush Script MT"
+        ctx.fillStyle = 'white';
+        ctx.fillText("Ön ennyit nyert: " + bet.value * bet.autoCashoutValue + "Ft", cvsWidth/2, cvsHeight/2);
+
         updateStats();
         
         // balance
@@ -71,6 +94,25 @@ function inflate() {
         betButton.innerHTML = "Fogadás";
         balance -= bet.value;
         updateStats();
+
+        isButtonCashout = false;
+
+        x = 0;
+
+        ctx.clearRect(0, 0, cvsWidth, cvsHeight);
+
+        ctx.drawImage(img_bad_luck, 0, 0, cvsWidth, cvsHeight);
+
+        
+        ctx.textAlign = "center";
+        ctx.font = "bold italic 40px Brush Script MT"
+        ctx.fillStyle = 'white';
+        ctx.fillText("Ön vesztett: " + bet.value + "Ft", cvsWidth/2, cvsHeight/2);
+
+        ctx.textAlign = "center";
+        ctx.font = "bold italic 60px Brush Script MT"
+        ctx.fillStyle = 'white';
+        ctx.fillText("A tőzsde összeomlott!", cvsWidth/2, cvsHeight/2 - 100);
     }
        
 }
@@ -98,11 +140,26 @@ function startInflation() {
             inflation = new Inflation();
             balance += bet.value * multiplier;
             updateStats();
-            multiplier = 1;
+            
             outcomeText.innerHTML = "CASHED OUT MANUALLY"
             
             betButton.innerHTML = "Fogadás";
             isButtonCashout = false;
+
+            x = 0;
+
+            ctx.clearRect(0, 0, cvsWidth, cvsHeight);
+
+            ctx.drawImage(img_luck, 0, 0, cvsWidth, cvsHeight);
+
+            ctx.textAlign = "center";
+            ctx.font = "bold italic 40px Brush Script MT"
+            ctx.fillStyle = 'white';
+            ctx.fillText("Ön ennyit nyert: " + bet.value * multiplier + "Ft", cvsWidth/2, cvsHeight/2);
+
+
+
+            multiplier = 1;
         }
         
     }
@@ -207,18 +264,18 @@ function drawGraph() {
 
 
 
-const img = document.querySelector('img');
+// const img = document.querySelector('img');
 
-function makeItRain() {
-  img.style.position = 'absolute';  
-  img.style.left = Math.random() * window.innerWidth + 'px';
+// function makeItRain() {
+//   img.style.position = 'absolute';  
+//   img.style.left = Math.random() * window.innerWidth + 'px';
   
-  img.style.animation = 'fall 2s linear';
+//   img.style.animation = 'fall 2s linear';
 
-  img.addEventListener('animationend', () => {
-    img.style.animation = '';
-    makeItRain(); 
-  });
-}
+//   img.addEventListener('animationend', () => {
+//     img.style.animation = '';
+//     makeItRain(); 
+//   });
+// }
 
 
