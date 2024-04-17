@@ -74,6 +74,8 @@ function inflate() {
         ctx.fillStyle = 'white';
         ctx.fillText("Ön ennyit nyert: " + bet.value * bet.autoCashoutValue + "Ft", cvsWidth/2, cvsHeight/2);
 
+        cvs.style.boxShadow = '0 0 50px 15px green'
+
         updateStats();
         
         // balance
@@ -113,6 +115,8 @@ function inflate() {
         ctx.font = "bold italic 60px Brush Script MT"
         ctx.fillStyle = 'white';
         ctx.fillText("A tőzsde összeomlott!", cvsWidth/2, cvsHeight/2 - 100);
+
+        cvs.style.boxShadow = '0 0 50px 15px red'
     }
        
 }
@@ -134,6 +138,8 @@ function startInflation() {
             interval = setInterval(inflate, 10);
 
             isButtonCashout = true;
+
+            cvs.style.boxShadow = '0 0 50px 15px #3507b3'
         }
         else {
             clearInterval(interval);
@@ -157,7 +163,7 @@ function startInflation() {
             ctx.fillStyle = 'white';
             ctx.fillText("Ön ennyit nyert: " + bet.value * multiplier + "Ft", cvsWidth/2, cvsHeight/2);
 
-
+            cvs.style.boxShadow = '0 0 50px 15px green'
 
             multiplier = 1;
         }
@@ -180,6 +186,8 @@ function drawGraph() {
     
     ctx.clearRect(0, 0, cvsWidth, cvsHeight);
     
+
+    //VERTICAL LINE
     ctx.beginPath();
     ctx.moveTo(30, 0);
     ctx.lineTo(30, cvsHeight);
@@ -205,10 +213,41 @@ function drawGraph() {
 
     ctx.stroke();
 
+
+
+
+    //HORIZONTAL LINE
+    
+    const axisY = cvsHeight - 30;
+
+    ctx.beginPath();
+    ctx.moveTo(0, axisY);
+    ctx.lineTo(cvsWidth, axisY);
+
+    ctx.moveTo(0, axisY);
+    ctx.lineTo(0, axisY - 5);
+
+    ctx.moveTo(cvsWidth/4, axisY);
+    ctx.lineTo(cvsWidth/4, axisY - 5); 
+
+    ctx.moveTo(cvsWidth/2, axisY);
+    ctx.lineTo(cvsWidth/2, axisY - 10);
+
+    ctx.moveTo(cvsWidth*3/4, axisY);
+    ctx.lineTo(cvsWidth*3/4, axisY - 5);
+
+    ctx.moveTo(cvsWidth, axisY);  
+    ctx.lineTo(cvsWidth, axisY - 5);
+
+    ctx.stroke(); 
+
+
+
+
     ctx.textAlign = "center";
     ctx.font = "bold italic 100px Brush Script MT"
     ctx.fillStyle = 'white';
-    ctx.fillText(multiplier.toFixed(2), cvsWidth/2, 100);
+    ctx.fillText(multiplier.toFixed(2) + "×", cvsWidth/2, 100);
     
 
 
@@ -248,7 +287,7 @@ function drawGraph() {
         ctx.textAlign = "center";
         ctx.font = "bold italic 100px Brush Script MT"
         ctx.fillStyle = 'white';
-        ctx.fillText(multiplier.toFixed(2), cvsWidth/2, 100);
+        ctx.fillText(multiplier.toFixed(2) + "×", cvsWidth/2, 100);
         
 
 

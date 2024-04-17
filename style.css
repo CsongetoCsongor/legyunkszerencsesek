@@ -1,26 +1,44 @@
+
 * {
     margin: 0;
     padding: 0;
     border: 0;
 }
 
+
+
 body {
-    background-color: rgb(5, 119, 20);
+    /* background-color: rgb(5, 119, 20);
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
+    animation: gradient1 15s ease infinite; */
+    background-color: black;
     height: 100vh;
 
     color: beige;
 }
 
 canvas#cvs {
-    background-color: grey;
-    /* background-image: url('images/crash-canvas-bg.jpg'); */
-    left: 50%;
+    background: rgb(79,22,194);
+    background: radial-gradient(circle, rgba(21,0,180,1) 0%, rgba(137,11,186,1) 50%, rgba(4,8,179,1) 100%);
+    background-size: 400% 400%;
+    animation: gradient2 15s ease infinite;
+    box-shadow: 0 0 50px 15px #3507b3;
 }
 
-@keyframes gradient {
+@keyframes gradient2 {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes gradient1 {
     0% {
       background-position: 0% 50%;
     }
