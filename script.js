@@ -43,7 +43,19 @@ img_bad_luck.src = 'images/stock_crash_bad_luck.png';
 const img_luck = new Image();
 img_luck.src = 'images/img_win.jpeg'; 
 
+
 let balance = 200;
+
+if (localStorage.getItem("balance") === undefined) {
+    let balance = 200;
+    localStorage.setItem("balance", balance);
+} else {
+    
+    balance = Number(localStorage.getItem("balance"));
+}
+
+// balance = 200;
+// localStorage.setItem("balance", balance);
 updateStats();
 
 let bet;
@@ -57,8 +69,12 @@ function inflate() {
         clearInterval(interval);
         inflation = new Inflation();
         multiplier = 1;
-        outcomeText.innerHTML = "AUTO-CASHED OUT SUCCESSFULLY"
+        outcomeText.innerHTML = "AUTO-CASHED OUT SUCCESSFULLY";
         balance += bet.value * bet.autoCashoutValue;
+        localStorage.setItem("balance", balance);
+        updateStats();
+        console.log(localStorage.getItem("balance"));
+        // balance += bet.value * bet.autoCashoutValue;
         
         isButtonCashout = false;
         betButton.innerHTML = "Fogadás";
@@ -94,7 +110,13 @@ function inflate() {
         inflation = new Inflation();
         outcomeText.innerHTML = "CRASHED"
         betButton.innerHTML = "Fogadás";
+
         balance -= bet.value;
+        localStorage.setItem("balance", balance);
+        updateStats();
+        console.log(localStorage.getItem("balance"));
+
+        
         updateStats();
 
         isButtonCashout = false;
@@ -144,8 +166,13 @@ function startInflation() {
         else {
             clearInterval(interval);
             inflation = new Inflation();
+            // balance += bet.value * multiplier;
+            // updateStats();
+
             balance += bet.value * multiplier;
+            localStorage.setItem("balance", balance);
             updateStats();
+            console.log(localStorage.getItem("balance"));
             
             outcomeText.innerHTML = "CASHED OUT MANUALLY"
             
@@ -173,7 +200,9 @@ function startInflation() {
 }
 
 function updateStats() {
-    balanceText.innerHTML = balance + "Ft";
+    balanceText.innerHTML = localStorage.getItem("balance") + "Ft";
+    // localStorage.setItem("balance", balance);
+    // console.log(localStorage.getItem("balance"));
 }
 
 
