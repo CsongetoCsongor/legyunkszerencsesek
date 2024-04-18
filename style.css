@@ -22,21 +22,22 @@ canvas#cvs {
     background: rgb(79,22,194);
     background: radial-gradient(circle, rgba(21,0,180,1) 0%, rgba(137,11,186,1) 50%, rgba(4,8,179,1) 100%);
     background-size: 400% 400%;
-    animation: gradient2 15s ease infinite;
+    animation: gradient2 20s linear infinite;
     box-shadow: 0 0 50px 15px #3507b3;
 }
 
 @keyframes gradient2 {
-    0% {
-        background-position: 0% 50%;
+    0% { 
+      background-position: 0 50%;
     }
     50% {
-        background-position: 100% 50%;
+      background-position: 100% 50%; 
     }
     100% {
-        background-position: 0% 50%;
+      background-position: 0 50%;  
     }
-}
+  }
+  
 
 @keyframes gradient1 {
     0% {

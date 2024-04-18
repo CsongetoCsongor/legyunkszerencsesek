@@ -88,7 +88,7 @@ function inflate() {
         ctx.textAlign = "center";
         ctx.font = "bold italic 40px Brush Script MT"
         ctx.fillStyle = 'white';
-        ctx.fillText("Ön ennyit nyert: " + bet.value * bet.autoCashoutValue + "Ft", cvsWidth/2, cvsHeight/2);
+        ctx.fillText("Ön ennyit nyert: " +  Math.round(parseFloat(bet.value * bet.autoCashoutValue) ) + "Ft", cvsWidth/2, cvsHeight/2);
 
         cvs.style.boxShadow = '0 0 50px 15px green'
 
@@ -150,57 +150,65 @@ betButton.addEventListener('click', startInflation);
 
 function startInflation() {
     
+    console.log("betValue.value: " + betValue.value);
+    console.log("localStorage.getItem(balance): " + localStorage.getItem("balance"));
+    if (Number(betValue.value ) <= Number(localStorage.getItem("balance"))) {
+        if (betValue.value != "") {
+            if (isButtonCashout == false) {
+                bet = new Bet(betValue.value, autoCashoutValue.value);
+                betButton.innerHTML = "CASHOUT";
+                
+                interval = setInterval(inflate, 10);
     
-
-    if (betValue.value != "") {
-        if (isButtonCashout == false) {
-            bet = new Bet(betValue.value, autoCashoutValue.value);
-            betButton.innerHTML = "CASHOUT";
+                isButtonCashout = true;
+    
+                cvs.style.boxShadow = '0 0 50px 15px #3507b3'
+            }
+            else {
+                clearInterval(interval);
+                inflation = new Inflation();
+                // balance += bet.value * multiplier;
+                // updateStats();
+    
+                balance += bet.value * multiplier;
+                localStorage.setItem("balance", balance);
+                updateStats();
+                console.log(localStorage.getItem("balance"));
+                
+                outcomeText.innerHTML = "CASHED OUT MANUALLY"
+                
+                betButton.innerHTML = "Fogadás";
+                isButtonCashout = false;
+    
+                x = 0;
+    
+                ctx.clearRect(0, 0, cvsWidth, cvsHeight);
+    
+                ctx.drawImage(img_luck, 0, 0, cvsWidth, cvsHeight);
+    
+                ctx.textAlign = "center";
+                ctx.font = "bold italic 40px Brush Script MT"
+                ctx.fillStyle = 'white';
+                ctx.fillText("Ön ennyit nyert: " +  Math.round(bet.value * multiplier) + "Ft", cvsWidth/2, cvsHeight/2);
+                console.log(typeof(bet.value * bet.autoCashoutValue));
+    
+                cvs.style.boxShadow = '0 0 50px 15px green'
+    
+                multiplier = 1;
+            }
             
-            interval = setInterval(inflate, 10);
-
-            isButtonCashout = true;
-
-            cvs.style.boxShadow = '0 0 50px 15px #3507b3'
         }
-        else {
-            clearInterval(interval);
-            inflation = new Inflation();
-            // balance += bet.value * multiplier;
-            // updateStats();
-
-            balance += bet.value * multiplier;
-            localStorage.setItem("balance", balance);
-            updateStats();
-            console.log(localStorage.getItem("balance"));
-            
-            outcomeText.innerHTML = "CASHED OUT MANUALLY"
-            
-            betButton.innerHTML = "Fogadás";
-            isButtonCashout = false;
-
-            x = 0;
-
-            ctx.clearRect(0, 0, cvsWidth, cvsHeight);
-
-            ctx.drawImage(img_luck, 0, 0, cvsWidth, cvsHeight);
-
-            ctx.textAlign = "center";
-            ctx.font = "bold italic 40px Brush Script MT"
-            ctx.fillStyle = 'white';
-            ctx.fillText("Ön ennyit nyert: " + bet.value * multiplier + "Ft", cvsWidth/2, cvsHeight/2);
-
-            cvs.style.boxShadow = '0 0 50px 15px green'
-
-            multiplier = 1;
-        }
-        
     }
+    else {
+        alert("Túl nagy tét! Kérjük, válasszon kisebb összeget.");
+    }
+
+    
     
 }
 
 function updateStats() {
-    balanceText.innerHTML = localStorage.getItem("balance") + "Ft";
+    balanceText.innerHTML = Math.round(parseFloat(localStorage.getItem("balance")) ) + "Ft";
     // localStorage.setItem("balance", balance);
     // console.log(localStorage.getItem("balance"));
 }
