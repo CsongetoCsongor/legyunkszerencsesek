@@ -152,7 +152,7 @@ function startInflation() {
     
     console.log("betValue.value: " + betValue.value);
     console.log("localStorage.getItem(balance): " + localStorage.getItem("balance"));
-    if (Number(betValue.value ) <= Number(localStorage.getItem("balance"))) {
+    if (Number(betValue.value) <= Number(localStorage.getItem("balance")) && Number(betValue.value) > 0) {
         if (betValue.value != "") {
             if (isButtonCashout == false) {
                 bet = new Bet(betValue.value, autoCashoutValue.value);
