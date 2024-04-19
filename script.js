@@ -43,19 +43,11 @@ img_bad_luck.src = 'images/stock_crash_bad_luck.png';
 const img_luck = new Image();
 img_luck.src = 'images/img_win.jpeg'; 
 
-
-let balance = 200;
-
-if (localStorage.getItem("balance") === undefined) {
-    let balance = 200;
-    localStorage.setItem("balance", balance);
-} else {
-    
-    balance = Number(localStorage.getItem("balance"));
+let cookie = document.cookie;
+if (cookie[0] == undefined) {
+    document.cookie = 200;
 }
-
-// balance = 200;
-// localStorage.setItem("balance", balance);
+// document.cookie = 200;
 updateStats();
 
 let bet;
@@ -70,10 +62,10 @@ function inflate() {
         inflation = new Inflation();
         multiplier = 1;
         outcomeText.innerHTML = "AUTO-CASHED OUT SUCCESSFULLY";
-        balance += bet.value * bet.autoCashoutValue;
-        localStorage.setItem("balance", balance);
+        document.cookie = Number(document.cookie) + Number(bet.value * bet.autoCashoutValue);
         updateStats();
-        console.log(localStorage.getItem("balance"));
+        // localStorage.setItem("balance", balance);
+        // console.log(localStorage.getItem("balance"));
         // balance += bet.value * bet.autoCashoutValue;
         
         isButtonCashout = false;
@@ -111,8 +103,10 @@ function inflate() {
         outcomeText.innerHTML = "CRASHED"
         betButton.innerHTML = "Fogadás";
 
-        balance -= bet.value;
-        localStorage.setItem("balance", balance);
+        // balance -= bet.value;
+        // localStorage.setItem("balance", balance);
+        document.cookie = Number(document.cookie) - Number(bet.value);
+        updateStats();
         updateStats();
         console.log(localStorage.getItem("balance"));
 
@@ -150,9 +144,9 @@ betButton.addEventListener('click', startInflation);
 
 function startInflation() {
     
-    console.log("betValue.value: " + betValue.value);
-    console.log("localStorage.getItem(balance): " + localStorage.getItem("balance"));
-    if (Number(betValue.value) <= Number(localStorage.getItem("balance")) && Number(betValue.value) > 0) {
+    // console.log("betValue.value: " + betValue.value);
+    // console.log("localStorage.getItem(balance): " + localStorage.getItem("balance"));
+    if (Number(betValue.value) <= Number(document.cookie) && Number(betValue.value) > 0 && autoCashoutValue.value >= 2) {
         if (betValue.value != "") {
             if (isButtonCashout == false) {
                 bet = new Bet(betValue.value, autoCashoutValue.value);
@@ -170,10 +164,12 @@ function startInflation() {
                 // balance += bet.value * multiplier;
                 // updateStats();
     
-                balance += bet.value * multiplier;
-                localStorage.setItem("balance", balance);
+                // balance += bet.value * multiplier;
+                // localStorage.setItem("balance", balance);
+                // updateStats();
+                // console.log(localStorage.getItem("balance"));
+                document.cookie = Number(document.cookie) + Number(bet.value * multiplier);
                 updateStats();
-                console.log(localStorage.getItem("balance"));
                 
                 outcomeText.innerHTML = "CASHED OUT MANUALLY"
                 
@@ -208,7 +204,7 @@ function startInflation() {
 }
 
 function updateStats() {
-    balanceText.innerHTML = Math.round(parseFloat(localStorage.getItem("balance")) ) + "Ft";
+    balanceText.innerHTML = Number(document.cookie) + "Ft";
     // localStorage.setItem("balance", balance);
     // console.log(localStorage.getItem("balance"));
 }
