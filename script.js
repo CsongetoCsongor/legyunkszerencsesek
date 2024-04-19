@@ -108,7 +108,7 @@ function inflate() {
         document.cookie = Number(document.cookie) - Number(bet.value);
         updateStats();
         updateStats();
-        console.log(localStorage.getItem("balance"));
+        // console.log(localStorage.getItem("balance"));
 
         
         updateStats();
