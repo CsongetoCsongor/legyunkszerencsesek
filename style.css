@@ -215,3 +215,52 @@ to {
     background: linear-gradient(to right, black, purple);
     color: white;
 }
+
+.GoldCoinSpin img:nth-child(-n+7){
+    animation: fallAndSpin 2s linear infinite;
+    animation-iteration-count: alternate;
+}
+
+.GoldCoinSpin:nth-child(1){
+    left: 14%;
+    animation-delay: 0s;
+}
+
+.GoldCoinSpin:nth-child(2){
+    left: 28%;
+    animation-delay: 0.5s;
+}
+
+.GoldCoinSpin:nth-child(3){
+    left: 42%;
+    animation-delay: 1s;
+}
+
+.GoldCoinSpin:nth-child(4){
+    left: 56%;
+    animation-delay: 1.5s;
+}
+
+.GoldCoinSpin:nth-child(5){
+    left: 70%;
+    animation-delay: 2s;
+}
+
+.GoldCoinSpin:nth-child(6){
+    left: 84%;
+    animation-delay: 2.5s;
+}
+
+.GoldCoinSpin:nth-child(7){
+    left: 98%;
+    animation-delay: 3s;
+}
+
+@keyframes fallAndSpin {
+    0% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    100% {
+      transform: translateY(1800px) rotate(360deg);
+    }
+  }
