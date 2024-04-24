@@ -10,8 +10,8 @@ import {Bet} from "./bet.js"
  const y = height / 2 - canvas.height / 2;
  
  canvas.style.position = 'absolute';
- canvas.style.left = `${z}px`; 
- canvas.style.top = `${y}px`;
+ canvas.style.left = `${y}px`; 
+ canvas.style.top = `${z}px`;
  
 const multiplierText = document.querySelector("#multiplier-text");
 /**
