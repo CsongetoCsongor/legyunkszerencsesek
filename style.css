@@ -92,6 +92,7 @@ table#prev-games-ul tr {
     position: absolute;
     right: 10%;
     animation: spinAndBounceStock 5s linear infinite;
+    display: none;
 }
 
 #BadLuckCat{
@@ -100,9 +101,10 @@ table#prev-games-ul tr {
     position: absolute;
     left: 10%;
     animation: spinAndBounceCat 5s linear infinite;
+    display: none;
 }
 
-#CurseOfRa{
+#CurseOfRah{
     font-size:5rem;
     width: 1920px;
     height: 1920px;
@@ -111,7 +113,7 @@ table#prev-games-ul tr {
     display: none;
 }
 
-/* div:nth-child(-n+6) {
+div:nth-child(-n+6) {
     background: linear-gradient(to right, black, purple,);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -145,7 +147,7 @@ div:nth-child(5) {
 }
 div:nth-child(6) {
     background: linear-gradient(to right, purple, black); 
-} */
+}
 
 
 @keyframes fall {
@@ -217,26 +219,26 @@ to {
     left: 0;
     width: 100%;
     height: 100px;
-    /* background: linear-gradient(to right, black, purple); */
+    background: linear-gradient(to right, black, purple);
     text-align: center;
     font-weight: bold;
     font-size: 30px;
     color: white;
-    /* padding: 10px; */
+    padding: 10px;
 }
 
 #Top-Button{
-    /* position: absolute; */
+    position: absolute;
     top: 0;
     left: 0;
-    /* width: 100%;
-    height: 100px; */
-    /* background: linear-gradient(to right, black, purple); */
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to right, black, purple);
     text-align: center;
     font-weight: bold;
     font-size: 30px;
     color: white;
-    /* padding: 10px; */
+    padding: 10px;
     padding: 0;
 }
 
@@ -251,9 +253,10 @@ to {
 .GoldCoinSpin img:nth-child(-n+7){
     animation: fallAndSpin 2s linear infinite;
     animation-iteration-count: alternate;
+    display: none;
 }
 
-/* .GoldCoinSpin:nth-child(1){
+.GoldCoinSpin:nth-child(1){
     left: 14%;
     animation-delay: 0s;
 }
@@ -295,4 +298,4 @@ to {
     100% {
       transform: translateY(1800px) rotate(360deg);
     }
-  } */
+  }

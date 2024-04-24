@@ -21,9 +21,13 @@ class Inflation {
             crashAtValue += 0.1;
             chanceToCrash += Math.random() * (0.000002 - 0.0000005) + 0.0000005;;
             // console.log("chanceToCrash:" + chanceToCrash)
+
         }
         // console.log("crashAtValue" + crashAtValue);
-        return crashAtValue;
+        let result = [];
+        result.push(crashAtValue);
+        result.push(hasCrashed);
+        return result;
     }
 }
 
