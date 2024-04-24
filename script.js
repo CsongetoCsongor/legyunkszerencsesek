@@ -4,14 +4,14 @@ import {Bet} from "./bet.js"
 
  const canvas = document.getElementById('cvs');
 
- const width = window.innerWidth;
- const height = window.innerHeight;
- const z = width / 2 - canvas.width / 2;
- const y = height / 2 - canvas.height / 2;
+//  const width = window.innerWidth;
+//  const height = window.innerHeight;
+//  const z = width / 2 - canvas.width / 2;
+//  const y = height / 2 - canvas.height / 2;
  
- canvas.style.position = 'absolute';
- canvas.style.left = `${z}px`; 
- canvas.style.top = `${y}px`;
+//  canvas.style.position = 'absolute';
+//  canvas.style.left = `${z}px`; 
+//  canvas.style.top = `${y}px`;
  
 const multiplierText = document.querySelector("#multiplier-text");
 /**
@@ -23,6 +23,19 @@ const autoCashoutValue = document.querySelector('#auto-cashout-value');
 const betButton = document.querySelector('#bet-button');
 const balanceText = document.querySelector("#balance-text")
 const outcomeText = document.querySelector("#outcome-text")
+const prevGamesTable = document.querySelector("#prev-games-ul");
+
+function checkHeight() {
+    if (prevGamesTable.clientHeight > 600) {
+        prevGamesTable.removeChild(prevGamesTable.firstElementChild); 
+    }
+  }
+  
+
+prevGamesTable.addEventListener('DOMSubtreeModified', checkHeight); 
+  
+
+checkHeight();
 
 
 const cvs = document.querySelector('#cvs');
@@ -62,6 +75,7 @@ if(!localStorage.getItem('prevGames')) {
 let existingArray;
 let newArrayString;
 let getPreviousGamesString;
+updatePrevGames();
 
 // //EXPAND
 // let existingArray = JSON.parse(localStorage.getItem('prevGames'));
@@ -138,7 +152,7 @@ function inflate() {
         clearInterval(interval);
         inflation = new Inflation();
         multiplier = 1;
-        outcomeText.innerHTML = "AUTO-CASHED OUT SUCCESSFULLY";
+        // outcomeText.innerHTML = "AUTO-CASHED OUT SUCCESSFULLY";
         document.cookie = Number(document.cookie) + Number(bet.value * bet.autoCashoutValue);
         updateStats();
         // localStorage.setItem("balance", balance);
@@ -159,18 +173,9 @@ function inflate() {
         ctx.fillStyle = 'white';
         ctx.fillText("Ön ennyit nyert: " +  Math.round(parseFloat(bet.value * bet.autoCashoutValue) ) + "Ft", cvsWidth/2, cvsHeight/2);
 
-        cvs.style.boxShadow = '0 0 50px 15px green'
+        cvs.style.boxShadow = '0 0 50px 15px green';
 
-        //EXPAND
-        // existingArray = stringToArray(localStorage.getItem('prevGames'));
-        // existingArray.push(["WIN","+"+Math.round(parseFloat(bet.value * bet.autoCashoutValue)),new Date().toLocaleString('en-US', {timeZone: 'Europe/Helsinki'}).slice(11,19).replace(/:/g, ':')    ]);
 
-        // newArrayString = JSON.stringify(existingArray);
-        // localStorage.setItem('prevGames', newArrayString);
-
-        // //GET
-        // getPreviousGamesString = localStorage.getItem('prevGames');
-        // getPreviousGamesString = getPreviousGamesString.slice(1, -1);
 
         let existingArray = JSON.parse(localStorage.getItem('prevGames'));
         existingArray.push(["WIN","+"+Math.round(parseFloat(bet.value * bet.autoCashoutValue)),currentTime]);
@@ -184,7 +189,7 @@ function inflate() {
         
 
 
-
+        updatePrevGames();
 
         
         arrayOfArrays.forEach(element => {
@@ -199,15 +204,15 @@ function inflate() {
     else if (multiplier <= inflation.crashAtValue) {
         drawGraph();
         multiplier += 0.01;
-        multiplierText.innerHTML = multiplier;
+        // multiplierText.innerHTML = multiplier;
         // console.log(multiplier); 
-        outcomeText.innerHTML = "TO BE DETERMINED"
+        // outcomeText.innerHTML = "TO BE DETERMINED"
     }
     else {
         clearInterval(interval);
         multiplier = 1;
         inflation = new Inflation();
-        outcomeText.innerHTML = "CRASHED"
+        // outcomeText.innerHTML = "CRASHED"
         betButton.innerHTML = "Fogadás";
 
         // balance -= bet.value;
@@ -225,7 +230,7 @@ function inflate() {
         let arrayOfArrays = JSON.parse(arrayString); 
 
         
-
+        updatePrevGames();
 
 
 
@@ -303,7 +308,7 @@ function startInflation() {
 
 
                 let existingArray = JSON.parse(localStorage.getItem('prevGames'));
-                existingArray.push(["WIN","+"+bet.value * multiplier,currentTime]);
+                existingArray.push(["WIN","+"+Math.round(bet.value * multiplier),currentTime]);
 
                 let newArrayString = JSON.stringify(existingArray);
                 localStorage.setItem('prevGames', newArrayString);
@@ -311,13 +316,15 @@ function startInflation() {
                 let arrayString = localStorage.getItem('prevGames');
                 let arrayOfArrays = JSON.parse(arrayString); 
 
+                updatePrevGames();
+
                 arrayOfArrays.forEach(element => {
                     console.log(element[0], element[1], element[2]);
                 });
 
                 updateStats();
                 
-                outcomeText.innerHTML = "CASHED OUT MANUALLY"
+                // outcomeText.innerHTML = "CASHED OUT MANUALLY"
                 
                 betButton.innerHTML = "Fogadás";
                 isButtonCashout = false;
@@ -332,7 +339,7 @@ function startInflation() {
                 ctx.font = "bold italic 40px Brush Script MT"
                 ctx.fillStyle = 'white';
                 ctx.fillText("Ön ennyit nyert: " +  Math.round(bet.value * multiplier) + "Ft", cvsWidth/2, cvsHeight/2);
-                console.log(typeof(bet.value * bet.autoCashoutValue));
+                // console.log(typeof(bet.value * bet.autoCashoutValue));
     
                 cvs.style.boxShadow = '0 0 50px 15px green'
     
@@ -482,18 +489,19 @@ function drawGraph() {
 
 
 
-// const img = document.querySelector('img');
-
-// function makeItRain() {
-//   img.style.position = 'absolute';  
-//   img.style.left = Math.random() * window.innerWidth + 'px';
-  
-//   img.style.animation = 'fall 2s linear';
-
-//   img.addEventListener('animationend', () => {
-//     img.style.animation = '';
-//     makeItRain(); 
-//   });
-// }
-
-
+function updatePrevGames() {
+    prevGamesTable.innerHTML="";
+    let arrayString = localStorage.getItem('prevGames');
+    let arrayOfArrays = JSON.parse(arrayString); 
+    arrayOfArrays.forEach(element => {
+        const tr = document.createElement("tr");
+        element.forEach(subElement => {
+            const td = document.createElement("td");
+            td.innerHTML=subElement;
+            tr.appendChild(td);
+        });
+        prevGamesTable.appendChild(tr);
+    });
+    
+    
+}
