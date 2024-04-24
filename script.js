@@ -29,7 +29,7 @@ function checkHeight() {
     if (prevGamesTable.clientHeight > 600) {
         prevGamesTable.removeChild(prevGamesTable.firstElementChild); 
     }
-  }
+}
   
 
 prevGamesTable.addEventListener('DOMSubtreeModified', checkHeight); 
@@ -497,6 +497,20 @@ function updatePrevGames() {
         const tr = document.createElement("tr");
         element.forEach(subElement => {
             const td = document.createElement("td");
+            if(subElement === "WIN") {
+                td.style.color = "green";
+            } else if (subElement == "LOSE") {
+                td.style.color = "red";
+            }
+            else if ([...subElement[0]] == "+") {
+                td.style.color = "green";
+            } else if ([...subElement[0]] == "-") {
+                td.style.color = "red";
+            }
+            else {
+                td.style.color = "white";
+            }
+            
             td.innerHTML=subElement;
             tr.appendChild(td);
         });
