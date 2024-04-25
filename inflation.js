@@ -1,6 +1,13 @@
 class Inflation {
     constructor() {
-        this.crashAtValue = this.generateCrash();
+        let randomLose = Math.random() * 100;
+        if(randomLose < 60) {
+            this.crashAtValue = 1;
+        }
+        else {
+            this.crashAtValue = this.generateCrash();
+        }
+        
     }
 
     generateCrash() {
@@ -21,13 +28,9 @@ class Inflation {
             crashAtValue += 0.1;
             chanceToCrash += Math.random() * (0.000002 - 0.0000005) + 0.0000005;;
             // console.log("chanceToCrash:" + chanceToCrash)
-
         }
         // console.log("crashAtValue" + crashAtValue);
-        let result = [];
-        result.push(crashAtValue);
-        result.push(hasCrashed);
-        return result;
+        return crashAtValue;
     }
 }
 

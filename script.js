@@ -108,16 +108,15 @@ img_luck.src = 'images/img_win.jpeg';
 
 let cookie = document.cookie;
 if (cookie[0] == undefined) {
-    document.cookie = 200;
+    document.cookie = 5000;
 }
-// document.cookie = 200;
+// document.cookie = 5000;
 updateStats();
 
 let bet;
 
 let multiplier = 1;
 let inflation = new Inflation();
-const [crashAtValue, hasCrashed] = inflation.generateCrash();
 
 function stringToArray(str) {
     // Remove the surrounding square brackets
@@ -152,7 +151,6 @@ function inflate() {
     if (bet.autoCashoutValue <= multiplier) {
         clearInterval(interval);
         inflation = new Inflation();
-        const [crashAtValue, hasCrashed] = inflation.generateCrash();
         multiplier = 1;
         // outcomeText.innerHTML = "AUTO-CASHED OUT SUCCESSFULLY";
         document.cookie = Number(document.cookie) + Number(bet.value * bet.autoCashoutValue);
@@ -173,12 +171,7 @@ function inflate() {
         ctx.textAlign = "center";
         ctx.font = "bold italic 40px Brush Script MT"
         ctx.fillStyle = 'white';
-        let Win = Math.round(parseFloat(bet.value * bet.autoCashoutValue) )
-        ctx.fillText("Ön ennyit nyert: " + Win + "Ft", cvsWidth/2, cvsHeight/2);
-        if(Win > 10000){
-            let WinCrashElement1 = document.querySelector(".GoldCoinSpin");
-            WinCrashElement1.style.display = "flex";
-        }
+        ctx.fillText("Ön ennyit nyert: " +  Math.round(parseFloat(bet.value * bet.autoCashoutValue) ) + "Ft", cvsWidth/2, cvsHeight/2);
 
         cvs.style.boxShadow = '0 0 50px 15px green';
 
@@ -208,7 +201,7 @@ function inflate() {
         // balance
         // balanceText.innerHTML = balance + " Ft";
     }
-    else if (multiplier <= crashAtValue) {
+    else if (multiplier <= inflation.crashAtValue) {
         drawGraph();
         multiplier += 0.01;
         // multiplierText.innerHTML = multiplier;
@@ -219,7 +212,6 @@ function inflate() {
         clearInterval(interval);
         multiplier = 1;
         inflation = new Inflation();
-        const [crashAtValue, hasCrashed] = inflation.generateCrash();
         // outcomeText.innerHTML = "CRASHED"
         betButton.innerHTML = "Fogadás";
 
@@ -269,16 +261,6 @@ function inflate() {
         ctx.font = "bold italic 40px Brush Script MT"
         ctx.fillStyle = 'white';
         ctx.fillText("Ön vesztett: " + bet.value + "Ft", cvsWidth/2, cvsHeight/2);
-        if(hasCrashed){
-            let crashElement1 = document.querySelector(".BadLuck");
-            let crashElement2 = document.querySelector("#BadLuckStock");
-            let crashElement3 = document.querySelector("#BadLuckCat");
-            let crashElement4 = document.querySelector("#CurseOfRah");
-            crashElement1.style.display = "flex";
-            crashElement2.style.display = "flex";
-            crashElement3.style.display = "flex";
-            crashElement4.style.display = "flex";
-        }
 
         ctx.textAlign = "center";
         ctx.font = "bold italic 60px Brush Script MT"
@@ -315,7 +297,6 @@ function startInflation() {
             else {
                 clearInterval(interval);
                 inflation = new Inflation();
-                const [crashAtValue, hasCrashed] = inflation.generateCrash();
                 // balance += bet.value * multiplier;
                 // updateStats();
     
@@ -357,12 +338,7 @@ function startInflation() {
                 ctx.textAlign = "center";
                 ctx.font = "bold italic 40px Brush Script MT"
                 ctx.fillStyle = 'white';
-                let Win = Math.round(bet.value * multiplier)
-                ctx.fillText("Ön ennyit nyert: " + Win + "Ft", cvsWidth/2, cvsHeight/2);
-                if(Win > 10000){
-                    let WinCrashElement1 = document.querySelector(".GoldCoinSpin");
-                    WinCrashElement1.style.display = "flex";
-                }
+                ctx.fillText("Ön ennyit nyert: " +  Math.round(bet.value * multiplier) + "Ft", cvsWidth/2, cvsHeight/2);
                 // console.log(typeof(bet.value * bet.autoCashoutValue));
     
                 cvs.style.boxShadow = '0 0 50px 15px green'
