@@ -1,8 +1,13 @@
 import {Inflation} from "./inflation.js";
-import {Bet} from "./bet.js"
+import {Bet} from "./bet.js";
+import data from './data.js';
+import {Item} from './item.js';
 
 
- const canvas = document.getElementById('cvs');
+// let items = Item.loadData(data);
+// console.log(items);
+
+const canvas = document.getElementById('cvs');
 
 //  const width = window.innerWidth;
 //  const height = window.innerHeight;
@@ -129,6 +134,27 @@ function stringToArray(str) {
 function insertLetter(string, letter, position) {
     return string.slice(0, position) + letter + string.slice(position);
   }
+
+
+
+if(!localStorage.getItem('items')) {
+
+    let items = Item.loadData(data);
+
+    
+    let itemsString = JSON.stringify(items);
+
+    localStorage.setItem('items', itemsString);
+
+    let itemsArrayString = localStorage.getItem('item');
+    let itemsArrayOfArrays = JSON.parse(itemsArrayString); 
+    itemsArrayOfArrays.forEach(element => {
+        
+    });
+  
+}
+
+
 
 function inflate() {
 
