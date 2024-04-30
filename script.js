@@ -29,6 +29,7 @@ const betButton = document.querySelector('#bet-button');
 const balanceText = document.querySelector("#balance-text")
 const outcomeText = document.querySelector("#outcome-text")
 const prevGamesTable = document.querySelector("#prev-games-ul");
+const itemsHolder = document.querySelector("#items-holder");
 
 function checkHeight() {
     if (prevGamesTable.clientHeight > 600) {
@@ -118,6 +119,8 @@ if (cookie[0] == undefined) {
 // document.cookie = 5000;
 updateStats();
 
+// console.log(typeof(Number(document.cookie)));
+
 let bet;
 
 let multiplier = 1;
@@ -141,18 +144,60 @@ if(!localStorage.getItem('items')) {
 
     let items = Item.loadData(data);
 
-    
     let itemsString = JSON.stringify(items);
 
     localStorage.setItem('items', itemsString);
+    console.log('fasz');
 
-    let itemsArrayString = localStorage.getItem('item');
-    let itemsArrayOfArrays = JSON.parse(itemsArrayString); 
-    itemsArrayOfArrays.forEach(element => {
-        
-    });
+    
+
+
+  
   
 }
+
+let itemsArrayString = localStorage.getItem('items');
+let itemsArrayOfArrays = JSON.parse(itemsArrayString); 
+itemsArrayOfArrays.forEach(element => {
+    const itemDiv = document.createElement("div");
+    itemDiv.innerText = element.name + " - " + element.price;
+    itemDiv.addEventListener('click', removeItem);
+    itemsHolder.appendChild(itemDiv);
+});
+
+function removeItem(event) {
+
+    // Remove div from DOM
+    event.target.remove();
+  
+    // Remove from items array
+    const name = event.target.innerText.split(' - ')[0];
+    const index = itemsArrayOfArrays.findIndex(item => item.name === name);
+    if(index > -1) {
+      itemsArrayOfArrays.splice(index, 1);
+    }
+  
+    // Update localStorage
+    const updatedItemsString = JSON.stringify(itemsArrayOfArrays);
+    localStorage.setItem('items', updatedItemsString);
+
+
+
+    //ADD TO BALANCE
+    const price = event.target.innerText.split(' - ')[1];
+
+    document.cookie = Number(document.cookie) + Number(price);
+    // console.log(document.cookie += Number(price));
+    updateStats();
+
+
+  
+}
+
+// document.cookie = 5000;
+
+
+// localStorage.clear();
 
 
 
@@ -218,9 +263,9 @@ function inflate() {
         updatePrevGames();
 
         
-        arrayOfArrays.forEach(element => {
-            console.log(element[0], element[1], element[2]);
-        });
+        // arrayOfArrays.forEach(element => {
+        //     console.log(element[0], element[1], element[2]);
+        // });
 
         updateStats();
         
@@ -261,9 +306,9 @@ function inflate() {
 
 
         
-        arrayOfArrays.forEach(element => {
-            console.log(element[0], element[1], element[2]);
-        });
+        // arrayOfArrays.forEach(element => {
+        //     console.log(element[0], element[1], element[2]);
+        // });
 
 
 
@@ -344,9 +389,9 @@ function startInflation() {
 
                 updatePrevGames();
 
-                arrayOfArrays.forEach(element => {
-                    console.log(element[0], element[1], element[2]);
-                });
+                // arrayOfArrays.forEach(element => {
+                //     console.log(element[0], element[1], element[2]);
+                // });
 
                 updateStats();
                 

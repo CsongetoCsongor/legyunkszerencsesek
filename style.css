@@ -69,6 +69,13 @@ table#prev-games-ul tr {
     }
   }
   
+#items-holder {
+    color: green;
+    background-color: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
 
 @keyframes gradient1 {
     0% {
@@ -113,7 +120,7 @@ table#prev-games-ul tr {
     display: none;
 }
 
-div:nth-child(-n+6) {
+/* div:nth-child(-n+6) {
     background: linear-gradient(to right, black, purple,);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -147,7 +154,7 @@ div:nth-child(5) {
 }
 div:nth-child(6) {
     background: linear-gradient(to right, purple, black); 
-}
+} */
 
 
 @keyframes fall {
@@ -227,7 +234,7 @@ to {
     padding: 10px;
 }
 
-#Top-Button{
+/* #Top-Button{
     position: absolute;
     top: 0;
     left: 0;
@@ -240,7 +247,7 @@ to {
     color: white;
     padding: 10px;
     padding: 0;
-}
+} */
 
 #bet-button{
     text-align: center;
