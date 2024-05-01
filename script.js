@@ -204,21 +204,27 @@ function removeItem(event) {
 function inflate() {
 
 
-    const timeString = new Date().toLocaleString('en-US', {timeZone: 'Europe/Helsinki'}).slice(11,19).replace(/:/g, ':');
+    // const timeString = new Date().toLocaleString('en-US', {timeZone: 'Europe/Helsinki'}).slice(11,19).replace(/:/g, ':');
 
     
 
-    let hours = timeString.substring(0, 2);
-    hours = parseInt(hours) - 1;
-    if(hours < 10) {
-    hours = '0' + hours+":";
-    }
+    // let hours = timeString.substring(0, 2);
+    // hours = parseInt(hours) - 1;
+    // if(hours < 10) {
+    // hours = '0' + hours+":";
+    // }
 
-    const updatedTime = hours + timeString.substring(2); 
+    // const updatedTime = hours + timeString.substring(2); 
 
 
 
-    currentTime = updatedTime;
+    // currentTime = updatedTime;
+
+    currentTime = new Date().toLocaleTimeString('en-US', {
+        timeZone: 'Europe/Berlin', 
+        hour12: false
+    });
+    console.log(currentTime);
     if (bet.autoCashoutValue <= multiplier) {
         clearInterval(interval);
         inflation = new Inflation();
@@ -240,7 +246,7 @@ function inflate() {
         ctx.drawImage(img_luck, 0, 0, cvsWidth, cvsHeight);
 
         ctx.textAlign = "center";
-        ctx.font = "bold italic 40px Brush Script MT"
+        ctx.font = "bold italic 40px Arial"
         ctx.fillStyle = 'white';
         ctx.fillText("Ön ennyit nyert: " +  Math.round(parseFloat(bet.value * bet.autoCashoutValue) ) + "Ft", cvsWidth/2, cvsHeight/2);
 
@@ -329,12 +335,12 @@ function inflate() {
 
         
         ctx.textAlign = "center";
-        ctx.font = "bold italic 40px Brush Script MT"
+        ctx.font = "bold italic 40px Arial"
         ctx.fillStyle = 'white';
         ctx.fillText("Ön vesztett: " + bet.value + "Ft", cvsWidth/2, cvsHeight/2);
 
         ctx.textAlign = "center";
-        ctx.font = "bold italic 60px Brush Script MT"
+        ctx.font = "bold italic 45px Arial"
         ctx.fillStyle = 'white';
         ctx.fillText("A tőzsde összeomlott!", cvsWidth/2, cvsHeight/2 - 100);
 
@@ -407,7 +413,7 @@ function startInflation() {
                 ctx.drawImage(img_luck, 0, 0, cvsWidth, cvsHeight);
     
                 ctx.textAlign = "center";
-                ctx.font = "bold italic 40px Brush Script MT"
+                ctx.font = "bold italic 40px Arial"
                 ctx.fillStyle = 'white';
                 ctx.fillText("Ön ennyit nyert: " +  Math.round(bet.value * multiplier) + "Ft", cvsWidth/2, cvsHeight/2);
                 // console.log(typeof(bet.value * bet.autoCashoutValue));
@@ -502,7 +508,7 @@ function drawGraph() {
 
 
     ctx.textAlign = "center";
-    ctx.font = "bold italic 100px Brush Script MT"
+    ctx.font = "bold italic 100px Arial"
     ctx.fillStyle = 'white';
     ctx.fillText(multiplier.toFixed(2) + "×", cvsWidth/2, 100);
     
@@ -542,7 +548,7 @@ function drawGraph() {
 
         ctx.globalAlpha = 1;
         ctx.textAlign = "center";
-        ctx.font = "bold italic 100px Brush Script MT"
+        ctx.font = "bold italic 100px Arial"
         ctx.fillStyle = 'white';
         ctx.fillText(multiplier.toFixed(2) + "×", cvsWidth/2, 100);
         
