@@ -70,11 +70,67 @@ table#prev-games-ul tr {
   }
   
 #items-holder {
-    color: green;
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    text-shadow: 
+   1px 1px 5px #000,
+  -1px -1px 5px #000,  
+   1px -1px 5px #000,
+  -1px 1px 5px #000;
     background-color: none;
-    margin: 0;
+    margin: 10px;
     padding: 0;
     border: none;
+    width: 290px;
+    position: absolute;
+    top: 50%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    
+}
+
+#items-holder div {
+    width: 120px;
+    height: 120px;
+    margin: 10px 10px 10px 0;
+    text-align: center;
+    float: left;
+    
+}
+
+#családi-autó {
+    background-image: url('./images/Családi\ autó.jpg');
+    background-size: cover;
+}
+
+#jelzálog-a-családi-házadra {
+    background-image: url('./images/jelzálog.jpg');
+    background-size: cover;
+}
+
+#lelked {
+    background-image: url('./images/Lelek.jpg');
+    background-size: cover;
+}
+
+#legidősebb-fiad {
+    background-image: url('./images/cigany.jpg');
+    background-size: cover;
+}
+
+#nagyanyád-tv-je {
+    background-image: url('./images/nagymamatvje.jpg');
+    background-size: cover;
+}
+
+#szűz-lányod-vére {
+    background-image: url('./images/bloodofavirgin.jpg');
+    background-size: cover;
+}
+
+#anyád-eljegyzési-gyűrűje {
+    background-image: url('./images/engring.png');
+    background-size: cover;
 }
 
 @keyframes gradient1 {
@@ -120,6 +176,59 @@ table#prev-games-ul tr {
     display: none;
 }
 
+
+#Top-Button div {
+    background: linear-gradient(to right, black, purple,);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    color: white;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+    display: inline-block;
+    width: auto;
+    margin: 0;
+}
+
+#tet-div {
+    background: linear-gradient(to right, black, purple,);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    color: white;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+    display: inline-block;
+    width: auto;
+    margin: 0;
+    
+}
+
+#auto-cashout-div {
+    background: linear-gradient(to right, black, purple,);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    color: white;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+    display: inline-block;
+    width: auto;
+    margin: 0;
+}
+
+#bet-button-div {
+    background: linear-gradient(to right, black, purple,);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    color: white;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+    display: inline-block;
+    width: auto;
+    margin: 0;
+}
 /* div:nth-child(-n+6) {
     background: linear-gradient(to right, black, purple,);
     border-radius: 8px;
@@ -234,7 +343,7 @@ to {
     padding: 10px;
 }
 
-/* #Top-Button{
+#Top-Button{
     position: absolute;
     top: 0;
     left: 0;
@@ -247,14 +356,15 @@ to {
     color: white;
     padding: 10px;
     padding: 0;
-} */
+}
 
 #bet-button{
-    text-align: center;
-    font-weight: bold;
+    /* text-align: center;
+    font-weight: bold; */
     font-size: 30px;
-    background: linear-gradient(to right, black, purple);
+    background: none;
     color: white;
+
 }
 
 .GoldCoinSpin img:nth-child(-n+7){

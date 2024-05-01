@@ -161,6 +161,8 @@ let itemsArrayOfArrays = JSON.parse(itemsArrayString);
 itemsArrayOfArrays.forEach(element => {
     const itemDiv = document.createElement("div");
     itemDiv.innerText = element.name + " - " + element.price;
+    itemDiv.id =  String(element.name).toLowerCase().replace(/\s/g, '-');;
+    console.log(itemDiv.id);
     itemDiv.addEventListener('click', removeItem);
     itemsHolder.appendChild(itemDiv);
 });
