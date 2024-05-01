@@ -428,7 +428,7 @@ function startInflation() {
         }
     }
     else {
-        alert("Túl nagy tét! Kérjük, válasszon kisebb összeget.");
+        alert("Nem megfelelő tét!");
     }
 
     
